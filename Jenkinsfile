@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh 'python --version'
             }
+	}
     }
     post {
         always {
