@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        COUNTER = 0
-    }
+   
     stages {
         
         stage('Build') {
@@ -27,7 +25,7 @@ pipeline {
         stage('Test') {
             steps {
                 
-                script{
+                environment{
                      COUNTER = "${sh(script:'grep "Hello" index.html | wc -l', returnStdout: true).trim()}"
                 }
                 
