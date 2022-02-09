@@ -30,7 +30,7 @@ pipeline {
                 
                 sh 'echo "..........Test Started.........."'
                
-                sh '''
+                sh '
                     result = `grep "Hello" index.html | wc -l`
                     echo ${result}
                     if [ "${result}" >= "1"]
@@ -40,7 +40,7 @@ pipeline {
                         echo "Test Failed"
                         exit 1
                     fi
-                '''
+                '
                 sh 'echo "..........Test Finished.........."'
             }
         }
