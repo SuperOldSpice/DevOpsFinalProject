@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        NAME = "Dmytro Kubai"
+    }
    
     stages {
         
@@ -25,15 +28,12 @@ pipeline {
         stage('Test') {
             steps {
                 
-                environment{
-                     COUNTER = "${sh(script:'grep "Hello" index.html | wc -l', returnStdout: true).trim()}"
-                }
-                
                 sh 'echo "..........Test Started.........."'
                
                 sh '''
-                    echo  ${COUNTER}
-                    if [ " ${COUNTER}" >= "1"]
+                    result = `grep "Hello" index.html | wc -l`
+                    echo ${result}
+                    if [ "${result}" >= "1"]
                     then
                         echo "Test Passed"
                     else
