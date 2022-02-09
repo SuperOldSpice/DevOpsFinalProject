@@ -1,7 +1,9 @@
 pipeline {
     agent any
     stages {
+        
         stage('Build') {
+            
             steps {
                 sh 'echo "..........Build Started.........."'
                 sh '''
@@ -14,8 +16,19 @@ pipeline {
                     <body/>
                     <html/>
                     EOF
-                    echo "..........Build Finished.........."
+                   '''
+                sh 'echo "..........Build Finished.........."'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'echo "..........Test Started.........."'
+                sh '''
+                    result = `grep "Hello" index.html | wc -l`
+                    echo $result
                 '''
+                sh 'echo "..........Test Finished.........."'
             }
         }
     }
