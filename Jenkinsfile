@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        COUNTER = 0
+        COUNTER
     }
     stages {
         
