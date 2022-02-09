@@ -3,10 +3,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello World"'
+                sh 'echo "..........Build Started.........."'
                 sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
+                    cat <<EOF> index.html
+                    <html/>
+                    <body bgcolor = "gray">
+                    <center>
+                    <h2>Hello world<h2/>
+                    <center/>
+                    <body/>
+                    <html/>
+                    EOF
+                    echo "..........Build Finished.........."
                 '''
             }
         }
