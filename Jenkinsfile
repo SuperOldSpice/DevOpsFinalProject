@@ -26,12 +26,16 @@ pipeline {
         
         stage('Test') {
             steps {
+                
+                script{
+                     COUNTER = "${sh(script:'grep "Hello" index.html | wc -l', returnStdout: true).trim()}"
+                }
+                
                 sh 'echo "..........Test Started.........."'
-                COUNTER = `grep "Hello" index.html | wc -l`
+               
                 sh '''
-                    ${COUNTER} = `grep "Hello" index.html | wc -l`
                     echo  ${COUNTER}
-                    if [ " ${COUNTER}" = "1"]
+                    if [ " ${COUNTER}" >= "1"]
                     then
                         echo "Test Passed"
                     else
