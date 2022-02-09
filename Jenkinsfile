@@ -31,9 +31,7 @@ pipeline {
                 sh 'echo "..........Test Started.........."'
                
                 sh '''
-                    result = `grep "Hello" index.html | wc -l`
-                    echo result
-                    if [ "${result}" >= "1"]
+                    if [ `grep "Hello" index.html | wc -l` >= "1"]
                     then
                         echo "Test Passed"
                     else
