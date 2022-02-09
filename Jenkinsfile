@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        COUNTER
+        COUNTER = 0
     }
     stages {
         
@@ -27,6 +27,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "..........Test Started.........."'
+                COUNTER = `grep "Hello" index.html | wc -l`
                 sh '''
                     ${COUNTER} = `grep "Hello" index.html | wc -l`
                     echo  ${COUNTER}
