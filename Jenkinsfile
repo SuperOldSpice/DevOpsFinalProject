@@ -20,8 +20,6 @@ pipeline {
 			<body/>
 			<html/>
 EOF
-			echo "Build Finished"
-
                    '''
                 sh 'echo "..........Build Finished.........."'
             }
