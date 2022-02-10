@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh 'echo "..........Build Started.........."'
                 sh '''
-			sed 's/BUILD_NUMBER/$BUILD_NUMBER/' index.html > output
+			sed "s/BUILD_NUMBER/${env.BUILD_NUMBER}/" index.html > output
 			mv output index.html
                    '''
                 sh 'echo "..........Build Finished.........."'
