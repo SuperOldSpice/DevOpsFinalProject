@@ -1,9 +1,11 @@
 pipeline {
-    agent any
-    environment {
-        NAME = "Dmytro Kubai"
-    }
-   
+	agent any
+	environment {
+	NAME = "Dmytro Kubai"
+	}
+	options {
+	  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+	}
     stages {
         
         stage('Build') {
