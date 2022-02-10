@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh 'echo "..........Build Started.........."'
                 sh '''
-                    cat <<EOF> index.html
+                    cat <<EOF > index.html 
                     <html/>
                     <body bgcolor = "gray">
                     <center>
@@ -20,6 +20,8 @@ pipeline {
                     <body/>
                     <html/>
                     EOF
+                    echo "Build Finished"
+
                    '''
                 sh 'echo "..........Build Finished.........."'
             }
