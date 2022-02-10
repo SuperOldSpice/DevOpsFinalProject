@@ -31,15 +31,16 @@ pipeline {
                 sh 'echo "..........Test Started.........."'
                
                 sh '''
-                    #!/bin/sh
-                    result = `grep "Hello" index.html | wc -l`
-                    if [ $result >= "1"]
+                    result=`grep "Hello" index.html | wc -l`
+                    echo $result
+                    if [ $result >= $1 ]
                     then
-                        echo "Test Passed"
+                            echo "Test Passed"
                     else
-                        echo "Test Failed"
-                        exit 1
+                            echo "Test Failed"
+                            exit 1
                     fi
+
                 '''
                 sh 'echo "..........Test Finished.........."'
             }
