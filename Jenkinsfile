@@ -19,7 +19,7 @@ pipeline {
 			<center/>
 			<body/>
 			<html/>
-			EOF
+EOF
 			echo "Build Finished"
 
                    '''
