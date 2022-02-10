@@ -23,17 +23,17 @@ pipeline {
                 
                 sh 'echo "..........Test Started.........."'
                
-                sh """
+                sh '''
 			result=`grep "Hello" index.html | wc -l`
 			echo "result = $result"
-			if (( $result >= 1 ))
+			if (( "$result" >= 1 ))
 			then
 				echo "Test Passed"
 			else
 				echo "Test Failed"
 				exit 1
 			fi
-                 """
+                 '''
                 sh 'echo "..........Test Finished.........."'
             }
         }
