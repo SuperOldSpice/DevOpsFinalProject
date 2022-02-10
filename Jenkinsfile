@@ -10,10 +10,10 @@ pipeline {
             
             steps {
                 sh 'echo "..........Build Started.........."'
-                sh '''
+                sh """
 			sed "s/BUILD_NUMBER/${env.BUILD_NUMBER}/" index.html > output
 			mv output index.html
-                   '''
+                   """
                 sh 'echo "..........Build Finished.........."'
             }
         }
@@ -23,7 +23,7 @@ pipeline {
                 
                 sh 'echo "..........Test Started.........."'
                
-                sh '''
+                sh """
 			result=`grep "Hello" index.html | wc -l`
 			echo "result = $result"
 			if (( $result >= 1 ))
@@ -33,7 +33,7 @@ pipeline {
 				echo "Test Failed"
 				exit 1
 			fi
-                '''
+                 """
                 sh 'echo "..........Test Finished.........."'
             }
         }
