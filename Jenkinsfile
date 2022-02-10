@@ -1,28 +1,51 @@
 pipeline {
-    agent { docker { image 'python:3.10.1-alpine' } }
-    stages {
-	
-	stage('build') {
-            steps {
-                sh 'python --version'
-            }
-	}
+    agent any
+    environment {
+        NAME = "Dmytro Kubai"
     }
-    post {
-        always {
-            echo 'This will always run'
+   
+    stages {
+        
+        stage('Build') {
+            
+            steps {
+                sh 'echo "..........Build Started.........."'
+                sh '''
+			cat <<EOF > index.html 
+			<html/>
+			<body bgcolor = "gray">
+			<center>
+			<h2>Hello world<h2/>
+			<center/>
+			<body/>
+			<html/>
+			EOF
+			echo "Build Finished"
+
+                   '''
+                sh 'echo "..........Build Finished.........."'
+            }
         }
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
-        }
-        unstable {
-            echo 'This will run only if the run was marked as unstable'
-        }
-        changed {
-            echo 'This will run only if the state of the Pipeline has changed'
+        
+        stage('Test') {
+            steps {
+                
+                sh 'echo "..........Test Started.........."'
+               
+                sh '''
+                    result=`grep "Hello" index.html | wc -l`
+                    echo $result
+                    if [ $result >= $1 ]
+                    then
+                            echo "Test Passed"
+                    else
+                            echo "Test Failed"
+                            exit 1
+                    fi
+
+                '''
+                sh 'echo "..........Test Finished.........."'
+            }
         }
     }
 }
