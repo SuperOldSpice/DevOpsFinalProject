@@ -25,7 +25,7 @@ pipeline {
                
                 sh '''
 			result=`grep "Hello" index.html | wc -l`
-			echo $result
+			echo "result = $result"
 			if (( $result >= 1 ))
 			then
 				echo "Test Passed"
