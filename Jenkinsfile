@@ -11,15 +11,7 @@ pipeline {
             steps {
                 sh 'echo "..........Build Started.........."'
                 sh '''
-			cat <<EOF > index.html 
-			<html/>
-			<body bgcolor = "gray">
-			<center>
-			<h2>Hello world<h2/>
-			<center/>
-			<body/>
-			<html/>
-EOF
+			sed 's/BUILD_NUMBER/${BUILD_NUMBER}/' index.html
                    '''
                 sh 'echo "..........Build Finished.........."'
             }
