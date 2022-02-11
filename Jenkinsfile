@@ -43,7 +43,7 @@ pipeline {
 			fi
                  '''
                 sh 'echo "..........Test Finished.........."'
-		    sh 'echo "..........Test Finished.........."'
+	
 				
 				
             }
