@@ -40,7 +40,7 @@ pipeline {
 				exit 1
 			fi
                  '''
-                sh 'echo "..........Test Finished.........."'
+                sh 'echo "...........Test Finished..........."'
 	
 				
 				
