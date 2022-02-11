@@ -1,11 +1,12 @@
 pipeline {
 	agent any
 	environment {
-	NAME = "Dmytro Kubai"
 	}
+	
 	options {
 	  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
 	}
+	
     stages {
         
         stage('Build') {
@@ -38,18 +39,21 @@ pipeline {
                  '''
                 sh 'echo "..........Test Finished.........."'
             }
+	}
 		
 		
-		stage("Deploy"){
-			s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, 
-				dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'the-final-project-bucket', 
-				excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, 
-				noUploadOnFailure: true, selectedRegion: 'eu-central-1', 
-				showDirectlyInBrowser: false, sourceFile: '**/index.html', 
-				storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
-				pluginFailureResultConstraint: 'FAILURE', profileName: 'S3-Artifact', userMetadata: []
+	stage("Deploy"){
+		steps {
+		s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, 
+			dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'the-final-project-bucket', 
+			excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, 
+			noUploadOnFailure: true, selectedRegion: 'eu-central-1', 
+			showDirectlyInBrowser: false, sourceFile: '**/index.html', 
+			storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
+			pluginFailureResultConstraint: 'FAILURE', profileName: 'S3-Artifact', userMetadata: []
 		}
+	}
 		
-        }
+        
     }
 }
