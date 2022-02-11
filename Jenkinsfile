@@ -1,6 +1,7 @@
 pipeline {
 	agent any
 	environment {
+		YEAR=2022
 	}
 	
 	options {
