@@ -13,9 +13,12 @@ pipeline {
 	}
 	
 	stages {
+		
 		stage("Deploy to server"){
 			steps {
-				sh 'ssh username@host "ls"'
+				sshagent(credentials : ['deploy_server']) {
+				sh 'ssh user@hostname.com whoami'
+				}
 			}
 		}
         
