@@ -12,8 +12,6 @@ pipeline {
 		pollSCM('* * * * *')
 	}
 	
-
-	
 	stages {
         
 		stage('Build') {
