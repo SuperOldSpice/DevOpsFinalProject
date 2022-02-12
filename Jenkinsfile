@@ -2,6 +2,7 @@ pipeline {
 	agent any
 	environment {
 		DOCKERHUB_CREDENTIALS = credentials('dockerhub_acc')
+		def LAST_BUILD = (env.$BUILD_NUMBER.toInteger() - 1).toString()
 	}
 
 	options {
@@ -56,7 +57,6 @@ pipeline {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				sh 'sudo docker push $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER'
-				def LAST_BUILD = (env.$BUILD_NUMBER.toInteger() - 1).toString()
 				sh 'sudo docker rmi -f $(sudo docker images -q $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER:$LAST_BUILD)'
 			}
     		}
