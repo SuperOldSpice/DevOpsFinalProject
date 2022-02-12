@@ -13,6 +13,11 @@ pipeline {
 	}
 	
 	stages {
+		stage("Deploy to server"){
+			steps {
+				sh 'ssh username@host "ls"'
+			}
+		}
         
 		stage('Build') {
 
@@ -73,11 +78,7 @@ pipeline {
 			}
 		}
 		
-		stage("Deploy to server"){
-			steps {
-				sh 'ssh username@host "ls"'
-			}
-		}
+		
 	}
 	
 	post {
