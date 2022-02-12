@@ -56,7 +56,11 @@ pipeline {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				sh 'sudo docker push $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER'
-				sh 'sudo sh ./image_remove.sh'
+				sh """
+					LAST_BUILD=${env.BUILD_NUMBER}
+					let "LAST_BUILD--"
+					sudo docker rmi -f $(sudo docker images -q $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-"$LAST_BUILD"
+				"""
 			}
     		}
 
