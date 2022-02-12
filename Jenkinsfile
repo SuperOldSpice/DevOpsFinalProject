@@ -17,7 +17,7 @@ pipeline {
 		stage("Deploy to server"){
 			steps {
 				sshagent(credentials : ['deploy_server']) {
-				sh 'ssh user@hostname.com whoami'
+				sh 'ssh -o StrictHostKeyChecking=no user@hostname.com uptime'
 				}
 			}
 		}
