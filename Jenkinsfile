@@ -58,7 +58,7 @@ pipeline {
 		stage('Push to DockerHub') {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-				sh 'sudo docker push username/myapp:$GIT_BRANCH-$BUILD_NUMBER'
+				sh 'sudo docker push $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER'
 			}
     		}
 
@@ -73,6 +73,13 @@ pipeline {
 				storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
 				pluginFailureResultConstraint: 'FAILURE', profileName: 'S3-Artifact', userMetadata: []
 			}
+		}
+	}
+	
+	post {
+		always {
+			sh 'sudo docker logout'
+			cleanWs()
 		}
 	}
 }
