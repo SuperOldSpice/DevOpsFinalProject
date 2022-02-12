@@ -57,6 +57,7 @@ pipeline {
 		steps {
 			sh 'sudo docker build -t username/myapp:$GIT_BRANCH-$BUILD_NUMBER .' 
 		}
+	}
 		
 		
 	stage("Deploy"){
