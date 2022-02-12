@@ -72,6 +72,12 @@ pipeline {
 				pluginFailureResultConstraint: 'FAILURE', profileName: 'S3-Artifact', userMetadata: []
 			}
 		}
+		
+		stage("Deploy to server"){
+			steps {
+				sh 'ssh username@host "ls"'
+			}
+		}
 	}
 	
 	post {
