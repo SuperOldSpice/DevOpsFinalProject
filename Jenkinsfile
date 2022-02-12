@@ -23,7 +23,6 @@ pipeline {
 				mv output index.html
 			   """
 			sh 'echo "..........Build Finished.........."'
-			sh 'whoami'
 		    }
 		}
 
