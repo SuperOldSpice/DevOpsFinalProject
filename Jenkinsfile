@@ -51,7 +51,7 @@ pipeline {
 
 		stage('Docker Build') {
 			steps {
-				sh 'sudo docker build -t username/myapp:$GIT_BRANCH-$BUILD_NUMBER .' 
+				sh 'sudo docker build -t $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER .' 
 			}
 		}
 		
