@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	environment {
 		DOCKERHUB_CREDENTIALS = credentials('dockerhub_acc')
-		LAST_BUILD = "${${env.BUILD_NUMBER}.toInteger() - 1)}"
+		LAST_BUILD = "${$BUILD_NUMBER.toInteger() - 1)}"
 	}
 
 	options {
