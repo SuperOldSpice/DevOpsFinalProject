@@ -1,7 +1,9 @@
 pipeline {
-	agent any
+	agent {
+		label 'docker'
+	}
 	environment {
-		YEAR=2022
+		DOCKERHUB_CREDENTIALS = credentials('dockerhub_acc')
 	}
 	
 	options {
@@ -46,6 +48,11 @@ pipeline {
 				
             }
 	}
+	    
+	stage('Docker Build') {
+		steps {
+			sh 'sudo docker build -t username/myapp:$GIT_BRANCH-$BUILD_NUMBER .' 
+		}
 		
 		
 	stage("Deploy"){
