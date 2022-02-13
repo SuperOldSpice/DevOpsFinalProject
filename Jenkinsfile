@@ -14,19 +14,6 @@ pipeline {
 	
 	stages {
 		
-		stage("Deploy to server"){
-			steps {
-				withCredentials([[$class: 'SSHUserPrivateKeyBinding', 
-				credentialsId: "deploy_server", 
-				keyFileVariable: 'SSH_PRIVATE_KEY',
-				passphraseVariable: '', usernameVariable: 'SSH_USERNAME',]]){
-					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "ls ~/.ssh"'
-					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "whoami"'
-				}
-		
-			}
-		}
-		
 		stage('Build') {
 
 		    steps {
@@ -74,7 +61,7 @@ pipeline {
     		}
 
 
-		stage("Deploy"){
+		stage("Deploy to stage"){
 			steps {
 				s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, 
 				dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'the-final-project-bucket', 
@@ -83,6 +70,21 @@ pipeline {
 				showDirectlyInBrowser: false, sourceFile: '**/index.html', 
 				storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], 
 				pluginFailureResultConstraint: 'FAILURE', profileName: 'S3-Artifact', userMetadata: []
+			}
+		}
+		
+		stage("Deploy to server"){
+			steps {
+				withCredentials([[$class: 'SSHUserPrivateKeyBinding', 
+				credentialsId: "deploy_server", 
+				keyFileVariable: 'SSH_PRIVATE_KEY',
+				passphraseVariable: '', usernameVariable: 'SSH_USERNAME',]]){
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker kill $(sudo docker ps -q)"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker rm $(sudo docker ps -a -q)"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker rmi -f $(sudo docker images -q $DOCKERHUB_CREDENTIALS_USR/myapp)"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker run --name app -p 80:80 --restart=always -d $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER"'
+				}
+		
 			}
 		}
 		
