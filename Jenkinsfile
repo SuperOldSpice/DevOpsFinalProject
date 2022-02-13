@@ -16,13 +16,13 @@ pipeline {
 		
 		stage("Deploy to server"){
 			steps {
-				sshagent(credentials : ['deploy_server']) {
-				sh '''
-				ssh -i sshUserPrivateKey username@hostname
-				cd ~
-				ls
-				'''
+				withCredentials([[$class: 'SSHUserPrivateKeyBinding', 
+				credentialsId: "deploy_server", 
+				keyFileVariable: 'SSH_PRIVATE_KEY',
+				passphraseVariable: '', usernameVariable: 'SSH_USERNAME',]]){
+					sh '''ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "ls ~/.ssh"
 				}
+		
 			}
 		}
         
