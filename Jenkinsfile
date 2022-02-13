@@ -79,7 +79,10 @@ pipeline {
 				credentialsId: "deploy_server", 
 				keyFileVariable: 'SSH_PRIVATE_KEY',
 				passphraseVariable: '', usernameVariable: 'SSH_USERNAME',]]){
-					sh'./my.sh'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker kill $(ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker ps -q")"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker rm $(ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker ps -a -q")"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker rmi -f $(ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker images -q $DOCKERHUB_CREDENTIALS_USR/myapp")"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "sudo docker run --name app -p 80:80 --restart=always -d $DOCKERHUB_CREDENTIALS_USR/myapp:$GIT_BRANCH-$BUILD_NUMBER"'
 				}
 		
 			}
