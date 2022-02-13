@@ -20,12 +20,13 @@ pipeline {
 				credentialsId: "deploy_server", 
 				keyFileVariable: 'SSH_PRIVATE_KEY',
 				passphraseVariable: '', usernameVariable: 'SSH_USERNAME',]]){
-					sh '''ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "ls ~/.ssh"
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "ls ~/.ssh"'
+					sh 'ssh -i $SSH_PRIVATE_KEY $SSH_USERNAME -o StrictHostKeyChecking=no "whoami"'
 				}
 		
 			}
 		}
-        
+		
 		stage('Build') {
 
 		    steps {
