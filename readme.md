@@ -1,4 +1,7 @@
 # DevOps Final Project 
+***Dmytro Kubai***
+
+***
 
 <img src="screenshots/jenkins_logo.png" alt="drawing" width="200"/>
 
@@ -9,6 +12,8 @@ Project uses
 - DockerHub as image storage
 - Jenkins as CI/CD tool
 - Docker for packaging, delivering and running application
+
+***
 
 ### Problem
 Developers team works on the web server application. It tries to implement new features as soon as possible and client wants to review them. The latest version of application must be regulary uploaded to server.  
