@@ -1,9 +1,10 @@
 # DevOps Final Project 
 ***Dmytro Kubai***
 
----
+
 
 <img src="screenshots/jenkins_logo.png" alt="drawing" width="200"/>
+
 ##### Multibranch CI/CD pipeline 
 Project uses 
 - Amazon Web Services for running tools and web server hosting
