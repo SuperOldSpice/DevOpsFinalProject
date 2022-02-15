@@ -5,7 +5,7 @@
 
 <img src="screenshots/jenkins_logo.png" alt="drawing" width="200"/>
 
-### Multibranch CI/CD pipeline 
+### CI/CD pipeline 
 
 Project uses 
 - Amazon Web Services for running tools and web server hosting
@@ -26,7 +26,7 @@ Developers work in their own environments and push code to github repository. Bu
 <br><br>
 
 ### Solution 
-Creating multibranch pipeline can make developing process much more efficient. Code will be automatically pulled from the repository, tested and builded in the defined environment    
+Creating pipeline can make developing process much more efficient. Code will be automatically pulled from the repository, tested and builded in the defined environment    
 
 <img src="screenshots/solution.png" alt="drawing" width="200"/>
 
