@@ -28,3 +28,27 @@ Application container image will pe pushed to Dockerhub and deployed to the prod
 
 ### Pipeline stages 
 <img src="screenshots/PipelineDiagram.drawio.png" alt="drawing" width="500"/>
+
+### Pipeline overview
+<img src="screenshots/blueocean.png" alt="drawing" width="500"/>
+
+Pipeline steps overview in blueocean
+<br>
+
+### Dockerhub
+<img src="screenshots/dockerhub.png" alt="drawing" width="500"/>
+
+Images with different versions of web app are stored into dockerhub repository
+<br>
+
+### AWS instances
+<img src="screenshots/servers.png" alt="drawing" width="500"/>
+
+All tool were run by AWS 
+<br>
+
+### Web server
+<img src="screenshots/host.png" alt="drawing" width="500"/>
+
+Container running on the deploy server. To verify that pipeline works correctly It displayes the build number.
+<br>
