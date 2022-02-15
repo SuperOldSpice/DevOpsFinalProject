@@ -34,7 +34,7 @@ Application container image will pe pushed to Dockerhub and deployed to the prod
 <br><br>
 
 ### Pipeline stages 
-<img src="screenshots/PipelineDiagram.drawio.png" alt="drawing" width="500"/>
+<img src="screenshots/PipelineDiagram.png" alt="drawing" width="500"/>
 <br><br>
 
 ### Pipeline overview
@@ -59,4 +59,3 @@ All tool were run by AWS
 <img src="screenshots/host.png" alt="drawing" width="700"/>
 
 Container running on the deploy server. To verify that pipeline works correctly It displayes the build number
-<br>
