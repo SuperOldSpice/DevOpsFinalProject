@@ -19,10 +19,14 @@ Project uses
 ### Problem
 Developers team works on the web server application. It tries to implement new features as soon as possible and client wants to review them. The latest version of application must be regulary uploaded to server.  
 
+<img src="screenshots/dev.png" alt="drawing" width="200"/>
+
 Developers work in their own environments and push code to github repository. But changes can lead to instability and every edit requires the app to be rebuild.
 
 ### Solution 
 Creating multibranch pipeline can make developing process much more efficient. Code will be automatically pulled from the repository, tested and builded in the defined environment.    
+
+<img src="screenshots/solution.png" alt="drawing" width="200"/>
 
 Application container image will pe pushed to Dockerhub and deployed to the production server.
 
