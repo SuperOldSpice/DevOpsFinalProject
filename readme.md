@@ -23,7 +23,7 @@ Developers team works on the web server application. It tries to implement new f
 <img src="screenshots/dev.png" alt="drawing" width="200"/>
 
 Developers work in their own environments and push code to github repository. But changes can lead to instability and every edit requires the app to be rebuild.
-<br>
+<br><br>
 
 ### Solution 
 Creating multibranch pipeline can make developing process much more efficient. Code will be automatically pulled from the repository, tested and builded in the defined environment.    
@@ -31,7 +31,7 @@ Creating multibranch pipeline can make developing process much more efficient. C
 <img src="screenshots/solution.png" alt="drawing" width="200"/>
 
 Application container image will pe pushed to Dockerhub and deployed to the production server.
-<br>
+<br><br>
 
 ### Pipeline stages 
 <img src="screenshots/PipelineDiagram.drawio.png" alt="drawing" width="500"/>
