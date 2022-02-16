@@ -59,3 +59,4 @@ All tool were run by AWS
 <img src="screenshots/host.png" alt="drawing" width="700"/>
 
 Container running on the deploy server. To verify that pipeline works correctly It displayes the build number
+<br>
